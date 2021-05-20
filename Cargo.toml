@@ -1,0 +1,40 @@
+[package]
+name = "doccer-rust"
+version = "0.1.0"
+authors = ["PsnDth <psndth@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+# Discord bot
+# serenity = "0.10"
+# tokio = "1.0"
+async-trait = "0.1"
+# channel parsing
+regex = "1"
+lazy_static = "1"
+# date parsing
+chrono = "0.4"
+date_time_parser = "0.1"
+# config parsing
+serde = "1.0"
+serde_json = "1.0"
+
+[dependencies.serenity]
+default-features = false
+features = [
+    "cache",
+    # "builder",
+    "client",
+    "framework",
+    "gateway",
+    "http",
+    "model",
+    "standard_framework",
+    # "utils",
+    "rustls_backend",
+]
+version = "~0.10.7"
+
+[dependencies.tokio]
+version = "1.0"
+features = ["macros", "rt-multi-thread"]
