@@ -9,9 +9,7 @@ use serenity::{
 };
 
 use std::collections::HashSet;
-
-use regex::Regex;
-use lazy_static::lazy_static;
+use std::str::FromStr;
 
 use date_time_parser::DateParser;
 use chrono::prelude::{
@@ -87,12 +85,8 @@ async fn find_channel_in_guild(ctx: &Context, guild: &Guild, channel: &String) -
 }
 
 pub async fn parse_channel(ctx: &Context, guild: &Guild, channel_arg: &String) -> Option<GuildChannel> {
-    lazy_static! {
-        static ref ID_PATTERN: Regex = Regex::new(r"^(?:<#)?(?P<id>[0-9]+)>?$").unwrap();
-    }
-    println!("Parsing channel {:?}", channel_arg);
-    if let Some(cid_capture) = ID_PATTERN.captures(channel_arg) {
-        let channel = ChannelId(cid_capture["id"].parse().unwrap_or(0)).to_channel(ctx).await.ok()?.guild()?;
+    if let Ok(cid) = ChannelId::from_str(channel_arg) {
+        let channel = cid.to_channel(ctx).await.ok()?.guild()?;
         if channel.guild_id != guild.id {
             return None;
         }

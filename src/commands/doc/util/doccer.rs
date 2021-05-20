@@ -1,6 +1,5 @@
-use async_trait::async_trait;
-
 use serenity::{
+    async_trait,
     prelude::Context,
     model::prelude::{
         GuildChannel,
@@ -177,7 +176,7 @@ impl DocSection for CategorySection {
         }
         if doc.len() == 1 {
             doc.push(self.empty_doc());
-            doc.push(String::default());
+            doc.push(String::from("\n"));
         }
         Some(doc.join(""))
     }

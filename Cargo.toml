@@ -8,10 +8,6 @@ edition = "2018"
 # Discord bot
 # serenity = "0.10"
 # tokio = "1.0"
-async-trait = "0.1"
-# channel parsing
-regex = "1"
-lazy_static = "1"
 # date parsing
 chrono = "0.4"
 date_time_parser = "0.1"

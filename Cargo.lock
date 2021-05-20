@@ -179,11 +179,8 @@ dependencies = [
 name = "doccer-rust"
 version = "0.1.0"
 dependencies = [
- "async-trait",
  "chrono",
  "date_time_parser",
- "lazy_static",
- "regex",
  "serde",
  "serde_json",
  "serenity",

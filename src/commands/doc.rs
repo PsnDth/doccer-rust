@@ -53,9 +53,10 @@ async fn doc(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
             (MIN_DATE, Utc::today())
         }
     };
-    // args.iter().map(|a| a.value());
+    
     let mut doc = Doc::new(start_date, end_date);
     if let Some(guild) = msg.guild(&ctx.cache).await {
+        // could use args.iter::<ChannelId> here if didn't want fuzzy matching
         for carg in args.iter::<String>() {
             let channel_arg = carg.unwrap_or("".to_string());
             if let Some(channel) = parse_channel(&ctx, &guild, &channel_arg).await {
